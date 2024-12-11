@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Usuarios</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: left;
+            border: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        .actions {
+            text-align: center;
+        }
+
+        /* Estilos para los botones */
+        a {
+            text-decoration: none;
+            display: inline-block;
+            padding: 6px 12px;
+            margin: 2px;
+            border-radius: 4px;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        /* Estilo para el botón de Editar */
+        .btn-editar {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        .btn-editar:hover {
+            background-color: #45a049;
+        }
+
+        /* Estilo para el botón de Eliminar */
+        .btn-eliminar {
+            background-color: #f44336;
+            color: white;
+        }
+
+        .btn-eliminar:hover {
+            background-color: #e53935;
+        }
+
+        /* Agregar botón para crear nuevo usuario */
+        .btn-nuevo {
+            background-color: #008CBA;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 4px;
+            font-size: 16px;
+            text-decoration: none;
+            margin: 20px 0;
+            display: inline-block;
+        }
+
+        .btn-nuevo:hover {
+            background-color: #007bb5;
+        }
+    </style>
+</head>
+<body>
+    <h1>Lista de Usuarios</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Edad</th>
+                <th>Teléfono</th>
+                <th class="actions">Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for usuario in usuarios %}
+            <tr>
+                <td>{{ usuario.id }}</td>
+                <td>{{ usuario.nombre }}</td>
+                <td>{{ usuario.edad }}</td>
+                <td>{{ usuario.telefono }}</td>
+                <td class="actions">
+                    <a href="/usuarios/editar/{{ usuario.id }}" class="btn-editar">Editar</a> |
+                    <a href="/usuarios/eliminar/{{ usuario.id }}" class="btn-eliminar" onclick="return confirm('¿Estás seguro que deseas eliminar este usuario?')">Eliminar</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <br>
+    <a href="/usuarios/nuevo" class="btn-nuevo">Agregar Nuevo Usuario</a>
+</body>
+</html>
